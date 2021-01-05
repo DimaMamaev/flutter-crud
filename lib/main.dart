@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:crud/model/transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,9 +38,31 @@ class MainPage extends StatelessWidget {
           title: Text('Expenses'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               child: Text('Chart'),
+            ),
+            Card(
+              child: Container(
+                margin: EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                    ),
+                    FlatButton(
+                      textColor: Colors.green,
+                      onPressed: null,
+                      child: Text('Add transaction'),
+                    )
+                  ],
+                ),
+              ),
             ),
             Column(
               children: transactions.map((ts) {
@@ -47,10 +70,32 @@ class MainPage extends StatelessWidget {
                     child: Row(
                   children: [
                     Container(
-                      child: Text(ts.amount.toString()),
-                    ),
+                        padding: EdgeInsets.all(10),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.green, width: 2)),
+                        child: Text(
+                          '\$${ts.amount.toString()}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.green),
+                        )),
                     Column(
-                      children: [Text(ts.title), Text(ts.dateTime.toString())],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(ts.title,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Colors.black)),
+                        Text(DateFormat.yMMMMd().format(ts.dateTime),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.grey)),
+                      ],
                     ),
                   ],
                 ));
@@ -60,3 +105,5 @@ class MainPage extends StatelessWidget {
         ));
   }
 }
+
+// 75

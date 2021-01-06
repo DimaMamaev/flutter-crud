@@ -38,21 +38,39 @@ class _TransactionInputState extends State<TransactionInput> {
             TextField(
               decoration: InputDecoration(
                 labelText: 'Title',
+                labelStyle: TextStyle(
+                  fontSize: 40,
+                  color: Colors.black,
+                ),
               ),
+              style: TextStyle(fontSize: 40),
               keyboardType: TextInputType.text,
               controller: titleController,
               onSubmitted: (_) => _onSubmitHandler(),
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
-              controller: amountController,
+              decoration: InputDecoration(
+                labelText: 'Amount',
+                labelStyle: TextStyle(
+                  fontSize: 40,
+                  color: Colors.black,
+                ),
+              ),
+              style: TextStyle(fontSize: 40),
               keyboardType: TextInputType.number,
+              controller: amountController,
               onSubmitted: (_) => _onSubmitHandler(),
+            ),
+            SizedBox(
+              height: 15,
             ),
             FlatButton(
               textColor: Colors.green,
               onPressed: _onSubmitHandler,
-              child: Text('Add transaction'),
+              child: Text(
+                'Add transaction',
+                style: TextStyle(fontSize: 40),
+              ),
             )
           ],
         ),

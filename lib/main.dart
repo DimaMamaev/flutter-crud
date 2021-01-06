@@ -1,4 +1,5 @@
 import 'package:crud/components/transactionCard.dart';
+import 'package:crud/components/transactionsEmpty.dart';
 import 'package:crud/components/transactionsInput.dart';
 import 'package:crud/model/transaction.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+        fontFamily: 'EastSeaDokdo',
+      ),
       home: MainPage(),
     );
   }
@@ -21,14 +26,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: '1',
-      title: 'Bought a new car',
-      amount: 1000,
-      dateTime: DateTime.now(),
-    ),
-  ];
+  final List<Transaction> transactions = [];
 
   void _addTransactionHandler(
       String transactionTitle, double transactionAmount) {
@@ -54,7 +52,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expenses'),
+        title: Text(
+          'Expenses',
+          style: TextStyle(fontSize: 45),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -70,7 +71,9 @@ class _MainPageState extends State<MainPage> {
           ),
           Column(
             children: [
-              TransactionCard(transactions),
+              transactions.isEmpty
+                  ? TransactionsEmpty()
+                  : TransactionCard(transactions),
             ],
           )
         ],

@@ -23,13 +23,15 @@ class TransactionCard extends StatelessWidget {
                       margin:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green, width: 2)),
+                          border: Border.all(
+                              color: Theme.of(context).primaryColor, width: 2)),
                       child: Text(
                         '\$${transactions[index].amount.toStringAsFixed(2)}',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.green),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35,
+                          color: Theme.of(context).primaryColor,
+                        ),
                       )),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,14 +39,14 @@ class TransactionCard extends StatelessWidget {
                       Text(transactions[index].title,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              fontSize: 40,
                               color: Colors.black)),
                       Text(
                           DateFormat.yMMMMd()
                               .format(transactions[index].dateTime),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                              fontSize: 35,
                               color: Colors.grey)),
                     ],
                   ),

@@ -1,3 +1,4 @@
+import 'package:crud/components/chartOfTransactions.dart';
 import 'package:crud/components/transactionCard.dart';
 import 'package:crud/components/transactionsEmpty.dart';
 import 'package:crud/components/transactionsInput.dart';
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Expenses',
+      title: 'Note your expenses',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
         fontFamily: 'EastSeaDokdo',
@@ -48,12 +49,19 @@ class _MainPageState extends State<MainPage> {
         });
   }
 
+  List<Transaction> get _lastWeekTransactions {
+    return transactions
+        .where((element) => element.dateTime
+            .isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Expenses',
+          'Note your expenses',
           style: TextStyle(fontSize: 45),
         ),
         actions: [
@@ -66,16 +74,12 @@ class _MainPageState extends State<MainPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            child: Text('Chart'),
-          ),
-          Column(
-            children: [
-              transactions.isEmpty
-                  ? TransactionsEmpty()
-                  : TransactionCard(transactions),
-            ],
-          )
+          transactions.isEmpty
+              ? TransactionsEmpty()
+              : Column(children: [
+                  Chart(_lastWeekTransactions),
+                  TransactionCard(transactions),
+                ])
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

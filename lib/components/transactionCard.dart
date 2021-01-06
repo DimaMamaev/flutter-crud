@@ -10,11 +10,12 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: this
-            .transactions
-            .map(
-              (tx) => Card(
+    return Container(
+        height: 300,
+        child: ListView.builder(
+            itemCount: transactions.length,
+            itemBuilder: (ctx, index) {
+              return Card(
                   child: Row(
                 children: [
                   Container(
@@ -24,7 +25,7 @@ class TransactionCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.green, width: 2)),
                       child: Text(
-                        '\$${tx.amount.toString()}',
+                        '\$${transactions[index].amount.toString()}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -33,12 +34,14 @@ class TransactionCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(tx.title,
+                      Text(transactions[index].title,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                               color: Colors.black)),
-                      Text(DateFormat.yMMMMd().format(tx.dateTime),
+                      Text(
+                          DateFormat.yMMMMd()
+                              .format(transactions[index].dateTime),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
@@ -46,8 +49,7 @@ class TransactionCard extends StatelessWidget {
                     ],
                   ),
                 ],
-              )),
-            )
-            .toList());
+              ));
+            }));
   }
 }

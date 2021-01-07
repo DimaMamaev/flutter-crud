@@ -60,10 +60,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: EastSeaDokdo
+    - family: XanhMono
       fonts:
-        - asset: assets/fonts/EastSeaDokdo-Regular.ttf
-          weight: 400
+        - asset: assets/fonts/XanhMono-Regular.ttf
+          weight: 600
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

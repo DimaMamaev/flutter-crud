@@ -11,10 +11,13 @@ class ChartRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        FittedBox(
-          child: Text(
-            '\$${spendingAmount.toStringAsFixed(0)}',
-            style: TextStyle(fontSize: 25),
+        Container(
+          height: 30,
+          child: FittedBox(
+            child: Text(
+              '\$${spendingAmount.toStringAsFixed(0)}',
+              style: TextStyle(fontSize: 20),
+            ),
           ),
         ),
         SizedBox(
@@ -49,7 +52,7 @@ class ChartRow extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: 20),
         ),
       ],
     );

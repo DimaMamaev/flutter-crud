@@ -5,9 +5,12 @@ class TransactionsEmpty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          'List is empty! Add new one!',
-          style: TextStyle(fontSize: 40),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 15),
+          child: Text(
+            'List is empty! Add new one!',
+            style: TextStyle(fontSize: 30),
+          ),
         ),
         Container(
           height: 350,

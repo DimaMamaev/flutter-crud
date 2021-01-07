@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Note your expenses',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
-        fontFamily: 'EastSeaDokdo',
+        fontFamily: 'XanhMono',
       ),
       home: MainPage(),
     );
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text(
           'Note your expenses',
-          style: TextStyle(fontSize: 45),
+          style: TextStyle(fontSize: 30),
         ),
         actions: [
           IconButton(

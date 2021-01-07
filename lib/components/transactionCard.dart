@@ -16,44 +16,30 @@ class TransactionCard extends StatelessWidget {
             itemCount: transactions.length,
             itemBuilder: (ctx, index) {
               return Card(
-                  elevation: 5,
-                  child: Row(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 15),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 2)),
+                elevation: 5,
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 50,
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: FittedBox(
                           child: Text(
-                            '\$${transactions[index].amount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 35,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          )),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(transactions[index].title,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40,
-                                  color: Colors.black)),
-                          Text(
-                              DateFormat.yMMMMd()
-                                  .format(transactions[index].dateTime),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 35,
-                                  color: Colors.grey)),
-                        ],
-                      ),
-                    ],
-                  ));
+                        '\$${transactions[index].amount}',
+                        style: TextStyle(fontSize: 15),
+                      )),
+                    ),
+                  ),
+                  title: Text(
+                    transactions[index].title,
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  subtitle: Text(
+                    DateFormat.yMMMMd().format(transactions[index].dateTime),
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              );
             }));
   }
 }

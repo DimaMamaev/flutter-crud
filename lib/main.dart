@@ -30,12 +30,12 @@ class _MainPageState extends State<MainPage> {
   final List<Transaction> transactions = [];
 
   void _addTransactionHandler(
-      String transactionTitle, double transactionAmount) {
+      String transactionTitle, double transactionAmount, DateTime date) {
     final newTransaction = Transaction(
         id: DateTime.now().toString(),
         title: transactionTitle,
         amount: transactionAmount,
-        dateTime: DateTime.now());
+        dateTime: date);
     setState(() {
       transactions.add(newTransaction);
     });

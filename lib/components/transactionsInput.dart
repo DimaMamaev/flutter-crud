@@ -22,11 +22,11 @@ class _TransactionInputState extends State<TransactionInput> {
     final String titleValue = titleController.text;
     final double amountValue = double.parse(amountController.text);
 
-    if (titleValue.isEmpty || amountValue <= 0) {
+    if (titleValue.isEmpty || amountValue <= 0 || choosenDate == null) {
       return;
     }
 
-    widget.addHandler(titleValue, amountValue);
+    widget.addHandler(titleValue, amountValue, choosenDate);
 
     Navigator.of(context).pop();
   }

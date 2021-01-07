@@ -49,6 +49,12 @@ class _MainPageState extends State<MainPage> {
         });
   }
 
+  void _onRemoveTransactionHandler(String id) {
+    setState(() {
+      transactions.removeWhere((element) => element.id == id);
+    });
+  }
+
   List<Transaction> get _lastWeekTransactions {
     return transactions
         .where((element) => element.dateTime
@@ -78,7 +84,7 @@ class _MainPageState extends State<MainPage> {
               ? TransactionsEmpty()
               : Column(children: [
                   Chart(_lastWeekTransactions),
-                  TransactionCard(transactions),
+                  TransactionCard(transactions, _onRemoveTransactionHandler),
                 ])
         ],
       ),

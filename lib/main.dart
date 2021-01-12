@@ -64,27 +64,36 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Note your expenses',
-          style: TextStyle(fontSize: 30),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _onAddBtnHandler(context),
-          )
-        ],
+    final appBar = AppBar(
+      title: Text(
+        'Note your expenses',
+        style: TextStyle(fontSize: 30),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _onAddBtnHandler(context),
+        )
+      ],
+    );
+    final double screenHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+    return Scaffold(
+      appBar: appBar,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           transactions.isEmpty
               ? TransactionsEmpty()
               : Column(children: [
-                  Chart(_lastWeekTransactions),
-                  TransactionCard(transactions, _onRemoveTransactionHandler),
+                  Container(
+                      height: screenHeight * 0.3,
+                      child: Chart(_lastWeekTransactions)),
+                  Container(
+                      height: screenHeight * 0.7,
+                      child: TransactionCard(
+                          transactions, _onRemoveTransactionHandler)),
                 ])
         ],
       ),
